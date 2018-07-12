@@ -1,0 +1,104 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="../bower_components/kendo-ui/src/styles/web/kendo.common.css">
+  <link rel="stylesheet" href="../bower_components/kendo-ui/src/styles/web/kendo.office365.css">
+  <link rel="stylesheet" href="../bower_components/kendo-ui/src/styles/web/kendo.office365.mobile.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+  your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<div class="main-page">
+  <div class="main-page__nav">
+    <div class="main-page__nav-auth">
+      <div class="main-page__nav-auth-complete" data-bind="visible: isAuthorized">
+        <button type="button" class="k-button k-primary" data-bind="events: { click: onLogOutClick }">SIGN OUT</button>
+      </div>
+      <form class="k-form" data-role="validator" data-bind="events: { submit: onFormSubmit }"
+            data-validate-on-blur="false" novalidate>
+        <div class="field-container">
+          <input placeholder="Enter Platform Domain (i.e. domain.rockdaisy.com)"
+                 class="k-input k-textbox"
+                 type="text"
+                 name="DomainName"
+                 id="DomainName"
+                 data-bind="value: form.domain"
+                 required data-required-msg="Domain Name is required."/>
+          <span class="k-invalid-msg" data-for="DomainName"></span>
+        </div>
+
+        <div class="field-container">
+          <input placeholder="Enter Username"
+                 class="k-input k-textbox"
+                 type="text"
+                 name="Username"
+                 id="Username"
+                 data-bind="value: form.username"
+                 required data-required-msg="Username is required."/>
+          <span class="k-invalid-msg" data-for="Username"></span>
+        </div>
+
+        <div class="field-container">
+          <input placeholder="Enter Password"
+                 class="k-input k-textbox"
+                 type="password"
+                 id="Password"
+                 name="Password"
+                 data-bind="value: form.password"
+                 required data-required-msg="Password is required."/>
+          <span class="k-invalid-msg" data-for="Password"></span>
+        </div>
+
+        <div class="error-block" data-bind="text: error"></div>
+        <button type="button" data-bind="events: { click: onFormSubmit }" class="k-button k-primary">SIGN IN</button>
+      </form>
+    </div>
+
+    <div class="main-page__nav-views">
+      <h4>SAVED DASHBOARDS</h4>
+
+      <div data-role="listview"
+           data-template="view-template"
+           data-bind="source: viewsDS"></div>
+    </div>
+
+    <script type="text/x-kendo-tmpl" id="view-template">
+          <div data-bind="events: { click: onViewClick }"
+               data-id="#: Id #"
+               class="view-content">
+            <img src="#= (DashboardMode === 5 && ScreenshotUrl) ? 'img/thumbnail.png' : ScreenshotUrl #"
+                 alt="#:Label#" />
+            <h4 class="rd-custom-tooltip">#:Label#</h4>
+          </a>
+    </script>
+  </div>
+
+  <div class="main-page__content">
+    <iframe src="" frameborder="0" data-bind="visible: isIframeShown, attr: { src: selectedViewURL }"></iframe>
+  </div>
+</div>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/kendo-ui/src/js/kendo.all.js"></script>
+<script src="../bower_components/kendo-ui/src/js/kendo.aspnetmvc.js"></script>
+<script src="../bower_components/kendo-ui/js/jszip.min.js"></script>
+<script src="../bower_components/kendo-ui/js/pako_deflate.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>
