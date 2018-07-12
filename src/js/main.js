@@ -45,6 +45,7 @@
       this.set('isIframeShown', false);
       this.set('isAuthorized', false);
       this.set('selectedViewURL', '');
+      window.localStorage.clear();
       this.viewsDS.read();
     },
     onFormSubmit: function(){
